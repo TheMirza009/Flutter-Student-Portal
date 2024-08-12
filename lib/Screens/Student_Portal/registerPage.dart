@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test_application_1/Components/validButton.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/SignUp_Page/signup_Name.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/loginPage.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/signupPage.dart';
 
@@ -80,8 +81,9 @@ class RegisterPage extends StatelessWidget {
                             buttonTitle: "Sign up",
                             onPressed: () {
                               Navigator.push(context, 
-                              MaterialPageRoute(
-                                builder: (_) => SignUpPage()));
+                              CupertinoPageRoute(
+                                builder: (_) => SignUp_NameScreen()));
+                                // builder: (_) => SignUpPage()));
                             },
                             padding: EdgeInsets.only(bottom: 20),
                             buttonSize: EdgeInsets.symmetric(

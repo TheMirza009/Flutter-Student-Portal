@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test_application_1/Components/DrawerButton.dart';
+import 'package:flutter_test_application_1/Components/dialog_Box.dart';
+import 'package:flutter_test_application_1/Components/dialoguebox.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/profile.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/registerPage.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/semesterPage.dart';
@@ -95,7 +97,8 @@ class DrawerContent extends StatelessWidget {
                       ),
                     );
                     Scaffold.of(context).openEndDrawer();
-                  },                ),
+                  },
+                ),
 
 ////////////////////////////  Assessment
                 DrawerOption(
@@ -118,6 +121,17 @@ class DrawerContent extends StatelessWidget {
                   ),
                   onPressFunction: () {},
                 ),
+
+///////////////////////////// Settings
+                DrawerOption(
+                  buttonTitle: "Settings",
+                  icon: const Icon(
+                    Icons.settings,
+                    size: 19,
+                    color: Colors.blueGrey,
+                  ),
+                  onPressFunction: () {},
+                ),
               ],
             ),
 
@@ -131,10 +145,25 @@ class DrawerContent extends StatelessWidget {
                   color: Colors.blueGrey,
                 ),
                 onPressFunction: () {
-                  Navigator.pushAndRemoveUntil(
-                      context,
-                      CupertinoPageRoute(builder: (_) => const RegisterPage()),
-                      (route) => false);
+                  Scaffold.of(context).openEndDrawer();
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return CustomDialogBox(
+                        message: "Are you sure you want to Log Out?",
+                        onPressYes: () {
+                          // Navigator.maybePop(context);
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            CupertinoPageRoute(
+                              builder: (_) => const RegisterPage(),
+                            ), (route) => false
+                          );
+                          
+                        },
+                      );
+                    },
+                  );
                 },
               ),
             ),

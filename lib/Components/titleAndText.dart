@@ -23,7 +23,7 @@ Widget titleAndText({
     child: Column(
       children: [
         borderUnderline
-            ? SizedBox.shrink()
+            ? const SizedBox.shrink()
             : Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25.0, vertical: 3),
@@ -42,22 +42,28 @@ Widget titleAndText({
             obscureText: obscureText,
             enabled: true,
             decoration: InputDecoration(
-                hintText: borderUnderline ? title : null,
-                enabledBorder: borderUnderline
-                    ? const UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 1, color: Color.fromARGB(139, 96, 125, 139)))
-                    : const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(255, 235, 235, 235),
-                          width: 2.5,
-                        ),
+              labelText: borderUnderline ? title : null,
+              labelStyle: borderUnderline
+                  ? const TextStyle(color: Colors.grey)
+                  : const TextStyle(color: Colors.transparent),
+              floatingLabelBehavior: FloatingLabelBehavior.always,
+              // hintText: borderUnderline ? title : null,
+              enabledBorder: borderUnderline
+                  ? const UnderlineInputBorder(
+                      borderSide: BorderSide(
+                          width: 1, color: Color.fromARGB(139, 96, 125, 139)))
+                  : const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(255, 235, 235, 235),
+                        width: 2.5,
                       ),
-                focusedBorder: const OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey))),
+                    ),
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey),
+              ),
+            ),
             validator: validator,
-            
           ),
         ),
         forgotPassword(changePass: changePass)
