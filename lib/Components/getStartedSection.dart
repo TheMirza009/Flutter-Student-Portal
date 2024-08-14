@@ -7,7 +7,7 @@ import 'package:flutter_test_application_1/Screens/Student_Portal/profile.dart';
 class GetStartedSection extends StatelessWidget {
   GetStartedSection({super.key});
 
-  String userFirstName = "AbdulMoeed";
+  String userFirstName = "Student";
 
   @override
   Widget build(BuildContext context) {

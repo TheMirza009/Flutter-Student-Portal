@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test_application_1/data/users_Database.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 defaultReturn(value) {
   if (value == null || value.isEmpty) {
@@ -16,8 +18,11 @@ Widget titleAndText({
   final controller,
   final validator,
   final errorStyle,
+  final suffixIcon,
+  final onChanged,
   final icon,
 }) {
+  UserDatabase userbase = UserDatabase();
   return Padding(
     padding: const EdgeInsets.only(bottom: 12),
     child: Column(
@@ -40,8 +45,10 @@ Widget titleAndText({
           child: TextFormField(
             controller: controller,
             obscureText: obscureText,
+            onChanged: onChanged,
             enabled: true,
             decoration: InputDecoration(
+              suffixIcon: suffixIcon,
               labelText: borderUnderline ? title : null,
               labelStyle: borderUnderline
                   ? const TextStyle(color: Colors.grey)
@@ -60,8 +67,9 @@ Widget titleAndText({
                       ),
                     ),
               focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey),
+                borderSide: BorderSide(color: Colors.grey),  
               ),
+              
             ),
             validator: validator,
           ),
@@ -73,6 +81,12 @@ Widget titleAndText({
 }
 
 Widget forgotPassword({bool changePass = false}) {
+  loadSavedUsers() async {
+    final myBox = await Hive.openBox("mybox");
+    final data = await myBox.get("USERLIST");
+    final savedUsers = data;
+    print("Loaded users list: $savedUsers");
+  }
   return changePass
       ? Transform.translate(
           offset: const Offset(-10, -13),
@@ -82,7 +96,7 @@ Widget forgotPassword({bool changePass = false}) {
               style: TextButton.styleFrom(
                 overlayColor: Colors.transparent,
               ),
-              onPressed: () => print("Change Password"),
+              onPressed: () => loadSavedUsers(),
               child: const Text(
                 "Forgot Password?",
                 style: TextStyle(

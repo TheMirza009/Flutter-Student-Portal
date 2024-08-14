@@ -37,98 +37,96 @@ class SubjectPage extends StatelessWidget {
                 color: Colors.white70,
               ),
               child: SingleChildScrollView(
-                child: Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Center(
-                            child: CircleAvatar(
-                              backgroundColor: Colors.transparent,
-                              radius: 70,
-                              child: Image.asset(
-                                "Assets/StudentPortal/FlutterLogo.png",
-                              ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Center(
+                          child: CircleAvatar(
+                            backgroundColor: Colors.transparent,
+                            radius: 70,
+                            child: Image.asset(
+                              "Assets/StudentPortal/FlutterLogo.png",
                             ),
                           ),
                         ),
-                        // Transform.translate(
-                        //   offset: const Offset(80,-15),
-                        //   child: Center(
-                        //     child: IconButton.filled(
-                        //       onPressed: () {},
-                        //       icon: const Icon(Icons.camera_alt),
-                        //       style: IconButton.styleFrom(
-                        //           backgroundColor: Colors.blue[300],),
-                        //     ),
-                        //   ),
-                        // ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "Electrical Engineering",
-                            style: GoogleFonts.montserrat().copyWith(
-                              fontSize: 35,
-                              fontWeight: FontWeight.w500,
-                            ),
+                      ),
+                      // Transform.translate(
+                      //   offset: const Offset(80,-15),
+                      //   child: Center(
+                      //     child: IconButton.filled(
+                      //       onPressed: () {},
+                      //       icon: const Icon(Icons.camera_alt),
+                      //       style: IconButton.styleFrom(
+                      //           backgroundColor: Colors.blue[300],),
+                      //     ),
+                      //   ),
+                      // ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Electrical Engineering",
+                          style: GoogleFonts.montserrat().copyWith(
+                            fontSize: 35,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Text(
-                            "Currently Enrolled \nMajor Subject",
-                            textAlign: TextAlign.start,
-                            style: GoogleFonts.montserrat().copyWith(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500,
-                            ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Text(
+                          "Currently Enrolled \nMajor Subject",
+                          textAlign: TextAlign.start,
+                          style: GoogleFonts.montserrat().copyWith(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                        SizedBox(height: 30),
-                        Divider(),
-                        TextButton(
-                          style: TextButton.styleFrom(maximumSize: Size(double.maxFinite, double.maxFinite)),
-                          onPressed: () {},
-                          child: Text(
-                            "Course outline",
-                            style: GoogleFonts.montserrat()
-                                .copyWith(fontSize: 18, color: Colors.black),
-                          ),
+                      ),
+                      SizedBox(height: 30),
+                      Divider(),
+                      TextButton(
+                        style: TextButton.styleFrom(maximumSize: Size(double.maxFinite, double.maxFinite)),
+                        onPressed: () {},
+                        child: Text(
+                          "Course outline",
+                          style: GoogleFonts.montserrat()
+                              .copyWith(fontSize: 18, color: Colors.black),
                         ),
-                        Divider(),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Recommended Books",
-                            style: GoogleFonts.montserrat()
-                                .copyWith(fontSize: 18, color: Colors.black),
-                          ),
+                      ),
+                      Divider(),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Recommended Books",
+                          style: GoogleFonts.montserrat()
+                              .copyWith(fontSize: 18, color: Colors.black),
                         ),
-                        Divider(),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Assignments",
-                            style: GoogleFonts.montserrat()
-                                .copyWith(fontSize: 18, color: Colors.black),
-                          ),
+                      ),
+                      Divider(),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Assignments",
+                          style: GoogleFonts.montserrat()
+                              .copyWith(fontSize: 18, color: Colors.black),
                         ),
-                        Divider(),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Examination",
-                            style: GoogleFonts.montserrat()
-                                .copyWith(fontSize: 18, color: Colors.black),
-                          ),
+                      ),
+                      Divider(),
+                      TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Examination",
+                          style: GoogleFonts.montserrat()
+                              .copyWith(fontSize: 18, color: Colors.black),
                         ),
-                        Divider()
-                      ],
-                    ),
+                      ),
+                      Divider()
+                    ],
                   ),
                 ),
               ),

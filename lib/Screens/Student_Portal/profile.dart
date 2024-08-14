@@ -20,111 +20,113 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // Main color
-        backgroundColor: Color.fromARGB(255, 193, 194, 201),
+      // Main color
+      backgroundColor: Color.fromARGB(255, 193, 194, 201),
 
-        // Appbar
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          elevation: 6,
-          title: const Text(
-            "Profile",
-            style: TextStyle(fontSize: 20),
-          ),
-          actions: [
-            IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
-            IconButton(
-                onPressed: () {}, icon: const Icon(Icons.notifications_none_outlined))
-          ],
+      // Appbar
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 6,
+        title: const Text(
+          "Profile",
+          style: TextStyle(fontSize: 20),
         ),
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Container(
-              height: double.infinity,
-              width: double.maxFinite,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: Colors.white70,
-              ),
-              child: SingleChildScrollView(
-                child: Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.notifications_none_outlined))
+        ],
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Container(
+            height: double.infinity,
+            width: double.maxFinite,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: Colors.white70,
+            ),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children: [
+                    Stack(
                       children: [
-                        Stack(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: CircleAvatar(
-                                  backgroundColor: Colors.transparent,
-                                  radius: 100,
-                                  backgroundImage: profilePicture != null
-                                      ? FileImage(profilePicture!)
-                                      : AssetImage("Assets/StudentPortal/avatarDefault.png"),
-                                  child: null),
-                            ),
-                            Transform.translate(
-                              offset: const Offset(160, 180),
-                              child: IconButton.filled(
-                                onPressed: () async {
-                                  final pickedPhoto = await ImagePicker()
-                                      .pickImage(source: ImageSource.gallery);
-                                      print(pickedPhoto!.path);
-                                  if (pickedPhoto != null) {
-                                    setState(() {
-                                      profilePicture = File(pickedPhoto.path);
-                                    });
-                                  }
-                                },
-                                icon: const Icon(Icons.camera_alt),
-                                style: IconButton.styleFrom(
-                                  backgroundColor: Colors.blue[300],
-                                ),
-                              ),
-                            ),
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.all(20.0),
+                          child: CircleAvatar(
+                              backgroundColor: Colors.transparent,
+                              radius: 100,
+                              backgroundImage: profilePicture != null
+                                  ? FileImage(profilePicture!)
+                                  : AssetImage(
+                                      "Assets/StudentPortal/avatarDefault.png"),
+                              child: null),
                         ),
-                        Text(
-                          "Mirza AbdulMoeed",
-                          style: GoogleFonts.montserrat().copyWith(
-                            fontSize: 30,
-                            fontWeight: FontWeight.w500,
+                        Transform.translate(
+                          offset: const Offset(160, 180),
+                          child: IconButton.filled(
+                            onPressed: () async {
+                              final pickedPhoto = await img.pickImage(
+                                  source: ImageSource.gallery);
+
+                              if (pickedPhoto != null) {
+                                setState(() {
+                                  profilePicture = File(pickedPhoto.path);
+                                });
+                              } else {
+                                // Handle the case when no image is selected
+                                print("No image selected");
+                              }
+                            },
+                            icon: const Icon(Icons.camera_alt),
+                            style: IconButton.styleFrom(
+                              backgroundColor: Colors.blue[300],
+                            ),
                           ),
                         ),
-                        Text(
-                          "19659  |  Computer Science",
-                          style: GoogleFonts.montserrat().copyWith(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        SizedBox(height: 30),
-                        Details(heading: "Name:", text: "Mirza AbdulMoeed"),
-                        Details(heading: "Gender:", text: "Male"),
-                        Details(heading: "Blood:", text: "A+"),
-                        Details(heading: "Roll#:", text: "RIUF-BSCS-19659"),
-                        Details(heading: "Program:", text: "Computer Science"),
-                        Details(heading: "Batch:", text: "Fall 2020-2024"),
-                        Details(heading: "City:", text: "Faisalabad, Panjab"),
-                        Details(heading: "Phone:", text: "0307-7707100"),
-                        Details(heading: "Phone:", text: "0307-7707100"),
-                        Details(
-                            heading: "Email:",
-                            text: "mirzaabdulmoed@gmail.com"),
                       ],
                     ),
-                  ),
+                    Text(
+                      "Mirza AbdulMoeed",
+                      style: GoogleFonts.montserrat().copyWith(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(
+                      "19659  |  Computer Science",
+                      style: GoogleFonts.montserrat().copyWith(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(height: 30),
+                    Details(heading: "Name:", text: "Mirza AbdulMoeed"),
+                    Details(heading: "Gender:", text: "Male"),
+                    Details(heading: "Blood:", text: "A+"),
+                    Details(heading: "Roll#:", text: "RIUF-BSCS-19659"),
+                    Details(heading: "Program:", text: "Computer Science"),
+                    Details(heading: "Batch:", text: "Fall 2020-2024"),
+                    Details(heading: "City:", text: "Faisalabad, Panjab"),
+                    Details(heading: "Phone:", text: "0307-7707100"),
+                    Details(
+                        heading: "Email:", text: "mirzaabdulmoed@gmail.com"),
+                  ],
                 ),
               ),
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
 
-Widget Details({String heading = "Name:", text = "Student Name"}) {
+Widget Details({String heading = "Name:", String text = "Student Name"}) {
   return Padding(
     padding: const EdgeInsets.only(top: 5.0, left: 10, right: 10),
     child: Column(

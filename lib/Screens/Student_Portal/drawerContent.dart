@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test_application_1/Components/DrawerButton.dart';
 import 'package:flutter_test_application_1/Components/dialog_Box.dart';
 import 'package:flutter_test_application_1/Components/dialoguebox.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/grades.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/profile.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/registerPage.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/semesterPage.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/settings.dart';
 import 'package:flutter_test_application_1/Utils/BarChart.dart';
 
 class DrawerContent extends StatelessWidget {
@@ -83,6 +85,24 @@ class DrawerContent extends StatelessWidget {
 
 //////////////////////////// Attendence ////////////////////////
                 DrawerOption(
+                  buttonTitle: "Grades",
+                  icon: const Icon(
+                    Icons.book,
+                    size: 19,
+                    color: Colors.blueGrey,
+                  ),
+                  onPressFunction: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (_) => Grades(),
+                      ),
+                    );
+                    Scaffold.of(context).openEndDrawer();
+                  },
+                ),
+//////////////////////////// Attendence ////////////////////////
+                DrawerOption(
                   buttonTitle: "Attendance",
                   icon: const Icon(
                     Icons.book,
@@ -130,7 +150,15 @@ class DrawerContent extends StatelessWidget {
                     size: 19,
                     color: Colors.blueGrey,
                   ),
-                  onPressFunction: () {},
+                  onPressFunction: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (_) => const SettingsPage(),
+                      ),
+                    );
+                    Scaffold.of(context).openEndDrawer();
+                  },
                 ),
               ],
             ),

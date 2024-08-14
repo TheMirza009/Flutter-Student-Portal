@@ -4,14 +4,17 @@ import 'package:flutter_test_application_1/Components/dialog_Box.dart';
 import 'package:flutter_test_application_1/Components/dialoguebox.dart';
 import 'package:flutter_test_application_1/Components/titleAndText.dart';
 import 'package:flutter_test_application_1/Components/validButton.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/SignUp_Page/signup_email.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/homescreen.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/semesterPage.dart';
 
 class SignUp_NameScreen extends StatelessWidget {
   SignUp_NameScreen({super.key});
 
+  final RegExp nameFormat = RegExp(r'^[A-Za-z\s]+$');
   final formKey1 = GlobalKey<FormState>();
   final nameController = TextEditingController();
+  String signupName = "";
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +22,24 @@ class SignUp_NameScreen extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
 
     ValidNavigate() {
+      // Validate function
       if (formKey1.currentState!.validate()) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("Validation Successful"),
-          ),
-        );
+        // ScaffoldMessenger.of(context).showSnackBar(
+        //   SnackBar(
+        //     content: Text("Welcome, $signupName"),
+        //   ),
+        // );
 
-        Navigator.pushAndRemoveUntil(context,
-            CupertinoPageRoute(builder: (_) => HomeScreen()), (route) => false);
+        // Save Name in variable then print in console
+        signupName = nameController.text;
+        print("Entered name: $signupName");
+
+        // Navigate
+        Navigator.push(
+            context,
+            CupertinoPageRoute(
+                builder: (_) => SignUp_EmailScreen(username: signupName,)));
+                // builder: (_) => SemesterPage()));
       }
     }
 
@@ -42,7 +54,6 @@ class SignUp_NameScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Expanded(
               child: Container(
-                height: screenHeight * 0.35,
                 width: screenWidth * 0.9,
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -91,6 +102,10 @@ class SignUp_NameScreen extends StatelessWidget {
                               } else if (value == nameController.text &&
                                   value.length < 3) {
                                 return "Name has to be longer than 3 letters.";
+                              } else if (!nameFormat.hasMatch(value)) {
+                                return "Name cannot contain any numbers or \nspecial characters.";
+                              } else if (value.length > 30) {
+                                return "Name must be 30 characters or less.";
                               } else {
                                 return null;
                               }
@@ -99,12 +114,15 @@ class SignUp_NameScreen extends StatelessWidget {
                         ]),
                       ),
                     ),
-                    validButton(
-                        buttonTitle: "Sign Up",
-                        onPressed: ValidNavigate,
-                        padding: const EdgeInsets.only(top: 00, bottom: 20),
-                        buttonSize: const EdgeInsets.symmetric(
-                            horizontal: 80, vertical: 20))
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: validButton(
+                          buttonTitle: "Next",
+                          onPressed: ValidNavigate,
+                          padding: const EdgeInsets.only(top: 00, bottom: 20),
+                          buttonSize: const EdgeInsets.symmetric(
+                              horizontal: 85, vertical: 20)),
+                    )
                   ],
                 ),
               ),

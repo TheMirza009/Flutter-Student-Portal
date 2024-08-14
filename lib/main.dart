@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/SignUp_Page/signup_Name.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/SignUp_Page/signup_password.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/homescreen.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/loginPage.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/profile.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/registerPage.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/signupPage.dart';
-import 'package:flutter_test_application_1/Screens/scrolltest.dart';
+import 'package:flutter_test_application_1/Screens/ToDoList_App/scrolltest.dart';
 import 'package:flutter_test_application_1/Utils/ImagePicker.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -24,7 +26,7 @@ class MyCal extends StatelessWidget {
       // home: ScrollTest(),
       title: "Student Portal",
       theme: ThemeData.light(),
-      home: HomeScreen(),
+      home: RegisterPage(),
     );
   }
 }

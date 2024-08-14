@@ -11,6 +11,8 @@ class TodoDatabase {
       "click + to add a new task",
       "Swipe to delete the task."
     ];
+
+    
   }
 
   void loadData() {

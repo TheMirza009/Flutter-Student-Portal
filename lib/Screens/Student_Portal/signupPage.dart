@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test_application_1/Components/titleAndText.dart';
 import 'package:flutter_test_application_1/Components/validButton.dart';
+import 'package:flutter_test_application_1/data/users_Database.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class SignUpPage extends StatelessWidget {
+  
   SignUpPage({super.key});
-
   final formKey = GlobalKey<FormState>();
+  final myBox = Hive.box('mybox');
+  UserDatabase userbase = UserDatabase();
 
   @override
   Widget build(BuildContext context) {
