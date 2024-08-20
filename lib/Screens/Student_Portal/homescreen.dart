@@ -4,10 +4,35 @@ import 'package:flutter_test_application_1/Components/DrawerButton.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/drawerContent.dart';
 import 'package:flutter_test_application_1/Components/feed.dart';
 import 'package:flutter_test_application_1/Components/iconCard.dart';
-import 'package:flutter_test_application_1/Screens/Student_Portal/profile.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/Profile/profile.dart';
+import 'package:flutter_test_application_1/data/users_Database.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  late UserDatabase userbase;
+
+  @override
+  void initState() {
+    super.initState();
+    openHiveBox();
+  }
+
+  void openHiveBox() async {
+    if (!Hive.isBoxOpen('mybox')) {
+      await Hive.openBox('mybox');
+      print("Hive opened");
+    }
+    userbase = UserDatabase();
+    userbase.loadData();
+    await userbase.getUserName();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +50,16 @@ class HomeScreen extends StatelessWidget {
           style: TextStyle(fontSize: 20),
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
           IconButton(
-              onPressed: () {}, icon: const Icon(Icons.notifications_none_outlined))
+              onPressed: () {
+                userbase.loadData();
+                print("Email: ${UserDatabase().currentUser}");
+                print("Name: ${UserDatabase().currentUser_name}");
+              },
+              icon: const Icon(Icons.search)),
+          IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.notifications_none_outlined))
         ],
       ),
 

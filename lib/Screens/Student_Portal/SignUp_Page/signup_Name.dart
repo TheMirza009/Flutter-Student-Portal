@@ -1,27 +1,24 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_test_application_1/Components/dialog_Box.dart';
-import 'package:flutter_test_application_1/Components/dialoguebox.dart';
 import 'package:flutter_test_application_1/Components/titleAndText.dart';
 import 'package:flutter_test_application_1/Components/validButton.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/SignUp_Page/signup_email.dart';
-import 'package:flutter_test_application_1/Screens/Student_Portal/homescreen.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/semesterPage.dart';
 
-class SignUp_NameScreen extends StatelessWidget {
-  SignUp_NameScreen({super.key});
+class SignUpNameScreen extends StatelessWidget {
+  SignUpNameScreen({super.key});
 
   final RegExp nameFormat = RegExp(r'^[A-Za-z\s]+$');
   final formKey1 = GlobalKey<FormState>();
   final nameController = TextEditingController();
-  String signupName = "";
+  final signupName = "";
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
+    // final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
 
-    ValidNavigate() {
+    validNavigate() {
       // Validate function
       if (formKey1.currentState!.validate()) {
         // ScaffoldMessenger.of(context).showSnackBar(
@@ -31,7 +28,7 @@ class SignUp_NameScreen extends StatelessWidget {
         // );
 
         // Save Name in variable then print in console
-        signupName = nameController.text;
+        var signupName = nameController.text;
         print("Entered name: $signupName");
 
         // Navigate
@@ -118,7 +115,7 @@ class SignUp_NameScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(15.0),
                       child: validButton(
                           buttonTitle: "Next",
-                          onPressed: ValidNavigate,
+                          onPressed: validNavigate,
                           padding: const EdgeInsets.only(top: 00, bottom: 20),
                           buttonSize: const EdgeInsets.symmetric(
                               horizontal: 85, vertical: 20)),

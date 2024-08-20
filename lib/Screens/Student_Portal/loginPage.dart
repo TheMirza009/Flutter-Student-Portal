@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test_application_1/Components/titleAndText.dart';
 import 'package:flutter_test_application_1/Components/validButton.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/homescreen.dart';
-import 'package:flutter_test_application_1/data/users_Database.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -25,20 +25,22 @@ class _LoginPageState extends State<LoginPage> {
   late UserDatabase userbase;
 
   @override
-void initState() {
-  super.initState();
-  openHiveBox();
-}
-
-void openHiveBox() async {
-  if (!Hive.isBoxOpen('mybox')) {
-    await Hive.openBox('mybox');
-    print("Hive opened");
+  void initState() {
+    super.initState();
+    openHiveBox();
   }
-  userbase = UserDatabase();
-  userbase.loadData(); // Load data after box is opened
-}
 
+  void openHiveBox() async {
+    if (!Hive.isBoxOpen('mybox')) {
+      await Hive.openBox('mybox');
+      print("Hive opened");
+    }
+    userbase = UserDatabase();
+    userbase.loadData(); // Load data after box is opened
+
+    // Debugging: Check if data is loaded properly
+    print("Saved users: ${userbase.savedUsers}");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +50,6 @@ void openHiveBox() async {
     signupNavigate() {
       Navigator.push(context, MaterialPageRoute(builder: (_) => SignUpPage()));
     }
-
-    final users = userbase.savedUsers;
 
     return Scaffold(
       appBar: AppBar(
@@ -91,13 +91,13 @@ void openHiveBox() async {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Enter something";
-                          } else if (users.containsKey(value)) {
+                          } else if (userbase.savedUsers.containsKey(value)) {
                             return null;
                           } else {
-                            return "account does not exist.";
+                            return "Account does not exist.";
                           }
                         },
-                        icon: users.containsKey(emailController.text)
+                        icon: userbase.savedUsers.containsKey(emailController.text)
                             ? Colors.greenAccent
                             : Colors.transparent,
                       ),
@@ -109,7 +109,7 @@ void openHiveBox() async {
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Enter something";
-                          } else if (users[emailController.text]?['password'] == value) {
+                          } else if (userbase.savedUsers[emailController.text]?['password'] == value) {
                             return null;
                           } else {
                             return "Incorrect Password or email";
@@ -135,6 +135,7 @@ void openHiveBox() async {
                               context,
                               CupertinoPageRoute(builder: (_) => HomeScreen()),
                             );
+                            userbase.loginUser(emailController.text);
                           }
                         },
                       ),
@@ -160,7 +161,7 @@ void openHiveBox() async {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (_) => SignUp_NameScreen(),
+                                      builder: (_) => SignUpNameScreen(),
                                     ),
                                   );
                                 },
@@ -187,3 +188,4 @@ void openHiveBox() async {
     );
   }
 }
+

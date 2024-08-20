@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test_application_1/Components/iconCard.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/homescreen.dart';
-import 'package:flutter_test_application_1/Screens/Student_Portal/profile.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/Profile/profile.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/subjectPage.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SubjectFeed extends StatelessWidget {
   SubjectFeed({super.key});
 
-  HomeScreen hm = HomeScreen();
+  // HomeScreen hm = HomeScreen();
 
   @override
   Widget build(BuildContext context) {

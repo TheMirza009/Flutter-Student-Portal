@@ -7,12 +7,10 @@ import 'package:flutter_test_application_1/Components/iconCard.dart';
 import 'package:flutter_test_application_1/Components/subjectFeed.dart';
 import 'package:flutter_test_application_1/Components/userCard.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/homescreen.dart';
-import 'package:flutter_test_application_1/Screens/Student_Portal/profile.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/Profile/profile.dart';
 
 class Feed extends StatelessWidget {
   Feed({super.key});
-
-  HomeScreen hm = HomeScreen();
   bool ProfileDataExists = true;
   bool contentAvailable = true;
 
