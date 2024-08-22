@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test_application_1/Components/DrawerButton.dart';
-import 'package:flutter_test_application_1/Screens/Student_Portal/drawerContent.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/Drawer_Content/drawerContent.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SubjectPage extends StatelessWidget {

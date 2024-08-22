@@ -91,6 +91,7 @@ class _SignUp_EmailScreenState extends State<SignUp_EmailScreen> {
                         children: [
                           titleAndText(
                             title: "Email",
+                            showTitle: false,
                             controller: emailController,
                             borderUnderline: true,
                             onChanged: (value) {

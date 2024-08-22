@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_test_application_1/Screens/Student_Portal/semesterPage.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/Drawer_Content/semesterPage.dart';
 
 Widget IconCard({
   final cardIcon = Icons.person,

@@ -2,8 +2,7 @@
 // import 'package:fl_chart_app/util/extensions/color_extensions.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_test_application_1/Screens/Student_Portal/homescreen.dart';
-import 'package:flutter_test_application_1/Screens/Student_Portal/semesterPage.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/Drawer_Content/semesterPage.dart';
 import 'package:flutter_test_application_1/Utils/CardPage.dart';
 import 'package:google_fonts/google_fonts.dart';
 

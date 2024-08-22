@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class DrawerOption extends StatelessWidget {
   final onPressFunction;
   final icon;
-  String buttonTitle;
+  final String buttonTitle;
   
   DrawerOption({
     super.key,

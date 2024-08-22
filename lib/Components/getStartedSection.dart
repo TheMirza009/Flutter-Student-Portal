@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test_application_1/Components/feed.dart';
 import 'package:flutter_test_application_1/Components/userCard.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/Profile/profile.dart';
+import 'package:flutter_test_application_1/Utils/userCard_Skeleton';
 import 'package:flutter_test_application_1/data/users_Database.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -34,11 +35,13 @@ class _GetStartedSectionState extends State<GetStartedSection> {
 
   @override
   Widget build(BuildContext context) {
+    bool ProfileDataExists = userbase.savedUsers[userbase.currentUser]?["details"]?["Photo"].isNotEmpty ?? false;
     return FutureBuilder(
       future: openHiveBox(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
+          // return const CircularProgressIndicator();
+          return UserCardSkeleton();
         } else if (snapshot.hasError) {
           return Text("Error: ${snapshot.error}");
         } else {
@@ -63,20 +66,23 @@ class _GetStartedSectionState extends State<GetStartedSection> {
               ),
               UserCard(
                 subjectTitle: "Welcome, $userFirstName!",
-                description: f.ProfileDataExists
+                description: ProfileDataExists
                     ? "Click to view profile."
                     : "Click to add Profile data.",
                 titleOnly: false,
                 trailing: false,
                 subjectTitleSize: 18,
-                onPressed: () {
-                  Future.delayed(const Duration(milliseconds: 200), () {
-                    Navigator.push(
+                onPressed: () async {
+                  await Future.delayed(const Duration(milliseconds: 200), () async {
+                     await Navigator.push(
                       context,
                       CupertinoPageRoute(
                         builder: (_) => const Profile(),
                       ),
                     );
+                    setState(() {
+                      openHiveBox();
+                    });
                   });
                 },
               ),
@@ -85,7 +91,7 @@ class _GetStartedSectionState extends State<GetStartedSection> {
               ),
               Divider(
                 color: Colors.blueGrey[300],
-              )
+              ),
             ]),
           );
         }

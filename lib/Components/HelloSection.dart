@@ -2,12 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test_application_1/Components/iconCard.dart';
 import 'package:flutter_test_application_1/Components/userCard.dart';
-import 'package:flutter_test_application_1/Screens/Student_Portal/semesterPage.dart';
 
 class HelloSection extends StatelessWidget {
-  HelloSection({super.key});
+  const HelloSection({super.key});
 
-  String userFirstName = "AbdulMoeed";
+  final String userFirstName = "AbdulMoeed";
 
   @override
   Widget build(BuildContext context) {

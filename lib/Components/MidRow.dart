@@ -1,16 +1,9 @@
 import 'dart:ui';
-
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_test_application_1/Components/MidTile.dart';
-import 'package:flutter_test_application_1/Screens/Student_Portal/grades.dart';
-import 'package:flutter_test_application_1/Screens/Student_Portal/gradesPage.dart';
-import 'package:flutter_test_application_1/Screens/Student_Portal/semesterPage.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/Drawer_Content/grades.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/Drawer_Content/semesterPage.dart';
 import 'package:flutter_test_application_1/Utils/BarChart.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class MidRow extends StatelessWidget {
   const MidRow({super.key});

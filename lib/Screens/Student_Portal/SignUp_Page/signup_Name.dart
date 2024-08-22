@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test_application_1/Components/titleAndText.dart';
 import 'package:flutter_test_application_1/Components/validButton.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/Drawer_Content/semesterPage.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/SignUp_Page/signup_email.dart';
-import 'package:flutter_test_application_1/Screens/Student_Portal/semesterPage.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SignUpNameScreen extends StatelessWidget {
   SignUpNameScreen({super.key});
@@ -35,8 +36,10 @@ class SignUpNameScreen extends StatelessWidget {
         Navigator.push(
             context,
             CupertinoPageRoute(
-                builder: (_) => SignUp_EmailScreen(username: signupName,)));
-                // builder: (_) => SemesterPage()));
+                builder: (_) => SignUp_EmailScreen(
+                      username: signupName,
+                    )));
+        // builder: (_) => SemesterPage()));
       }
     }
 
@@ -85,12 +88,13 @@ class SignUpNameScreen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.only(left: 8.0),
                       child: Form(
                         key: formKey1,
                         child: Column(children: [
                           titleAndText(
                             title: "Name",
+                            showTitle: false,
                             controller: nameController,
                             borderUnderline: true,
                             validator: (value) {
@@ -110,6 +114,17 @@ class SignUpNameScreen extends StatelessWidget {
                           ),
                         ]),
                       ),
+                      
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25.0, bottom:10),
+                      child: Text(
+                        "Please make sure that the name is your full name as registered on the CNIC card. Also make sure it does not contain any numbers or special characters.",
+                        style: GoogleFonts.montserrat().copyWith(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(15.0),
@@ -119,7 +134,7 @@ class SignUpNameScreen extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 00, bottom: 20),
                           buttonSize: const EdgeInsets.symmetric(
                               horizontal: 85, vertical: 20)),
-                    )
+                    ),
                   ],
                 ),
               ),

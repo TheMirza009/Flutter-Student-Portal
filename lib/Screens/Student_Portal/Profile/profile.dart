@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/Profile/profile_edit.dart';
-import 'package:flutter_test_application_1/Screens/Student_Portal/drawerContent.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/Drawer_Content/drawerContent.dart';
 import 'package:flutter_test_application_1/data/UserDetails.dart';
 import 'package:flutter_test_application_1/data/users_Database.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,6 +29,13 @@ class _ProfileState extends State<Profile> {
     openHiveBox();
   }
 
+  @override
+  void didPopNext() {
+    setState(() {
+      openHiveBox();
+    });
+  }
+
   Future<void> openHiveBox() async {
     if (!Hive.isBoxOpen('mybox')) {
       await Hive.openBox('mybox');
@@ -42,6 +49,24 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     var userDetails = userbase.savedUsers[userbase.currentUser]?["details"];
     final currentUserName = userbase.currentUser_name;
+    final userProfileImage = userDetails?["Photo"];
+    final imageProvider =
+        userProfileImage != null && File(userProfileImage).existsSync()
+            ? FileImage(File(userProfileImage))
+            : const AssetImage("Assets/StudentPortal/avatarDefault.png");
+
+    // Null Safety
+    String studentName = (userDetails?["Name"]?.isNotEmpty ?? false)
+        ? userDetails!["Name"]
+        : userbase.currentUser_name;
+    String studentRoll = (userDetails?["Roll"]?.isNotEmpty ?? false)
+        ? userDetails!["Roll"]
+        : "Roll#";
+    String studentProgram = (userDetails?["Program"]?.isNotEmpty ?? false)
+        ? userDetails!["Program"]
+        : "Program";
+
+    // Scaffold
     return Scaffold(
       // Main color
       backgroundColor: const Color.fromARGB(255, 193, 194, 201),
@@ -58,7 +83,6 @@ class _ProfileState extends State<Profile> {
           IconButton(
               onPressed: () {
                 setState(() {
-                  userDetails?["Blood"] = "A+";
                   print(">>>>>>>>>>>>>>Details: $userDetails");
                 });
               },
@@ -103,10 +127,8 @@ class _ProfileState extends State<Profile> {
                                 child: CircleAvatar(
                                   backgroundColor: Colors.transparent,
                                   radius: 100,
-                                  backgroundImage: profilePicture != null
-                                      ? FileImage(profilePicture!)
-                                      : const AssetImage(
-                                          "Assets/StudentPortal/avatarDefault.png"),
+                                  backgroundImage:
+                                      imageProvider as ImageProvider,
                                 ),
                               ),
                               Transform.translate(
@@ -118,13 +140,17 @@ class _ProfileState extends State<Profile> {
 
                                     if (pickedPhoto != null) {
                                       setState(() {
-                                        profilePicture = File(pickedPhoto.path);
+                                        profilePicture = File(pickedPhoto
+                                            .path); // Update the profile picture state
+                                        userDetails?["Photo"] = pickedPhoto
+                                            .path; // Update the userDetails photo path
                                       });
-                                      var userPhoto = userDetails?["Photo"];
-                                      userPhoto = File(pickedPhoto.path);
-                                      userbase.updateData();
+                                      userbase
+                                          .updateData(); // Save the updated data to Hive
                                       print(
                                           "Photo changed for user: ${userbase.savedUsers[userbase.currentUser]?["details"]?["Photo"]}");
+                                      print(
+                                          "Full details: ${userbase.savedUsers[userbase.currentUser]?["details"]}");
                                     } else {
                                       // Handle the case when no image is selected
                                       print("No image selected");
@@ -139,7 +165,7 @@ class _ProfileState extends State<Profile> {
                             ],
                           ),
                           Text(
-                            userbase.currentUser_name,
+                            studentName,
                             style: GoogleFonts.montserrat().copyWith(
                               fontSize: 30,
                               fontWeight: FontWeight.w500,
@@ -148,7 +174,7 @@ class _ProfileState extends State<Profile> {
 
                           // Title
                           Text(
-                            "19659  |  Computer Science",
+                            "$studentRoll |  $studentProgram",
                             style: GoogleFonts.montserrat().copyWith(
                               fontSize: 10,
                               fontWeight: FontWeight.w500,
@@ -157,9 +183,7 @@ class _ProfileState extends State<Profile> {
                           const SizedBox(height: 30),
 
                           // Details main
-                          Details(
-                              heading: "Name:",
-                              text: userbase.currentUser_name),
+                          Details(heading: "Name:", text: studentName),
                           Details(
                               heading: "Gender:", text: userDetails?["Gender"]),
                           Details(
@@ -168,7 +192,8 @@ class _ProfileState extends State<Profile> {
                               heading: "Roll#:", text: userDetails?["Roll"]),
                           Details(
                               heading: "Program:",
-                              text: userDetails?["Program"]),
+                              text: userbase.savedUsers[userbase.currentUser]
+                                  ?["details"]?["Program"]),
                           Details(
                               heading: "Batch:", text: userDetails?["Batch"]),
                           Details(heading: "City:", text: userDetails?["City"]),
@@ -186,13 +211,19 @@ class _ProfileState extends State<Profile> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 55),
                                   backgroundColor: Colors.white),
-                              onPressed: () {
-                                Navigator.push(
+                              onPressed: () async {
+                                // Navigate to ProfileEdit screen and wait for it to pop
+                                await Navigator.push(
                                   context,
                                   CupertinoPageRoute(
                                     builder: (_) => ProfileEdit(),
                                   ),
                                 );
+
+                                // When coming back, refresh the state
+                                setState(() {
+                                  openHiveBox();
+                                });
                               },
                               child: const Text(
                                 "Edit details",

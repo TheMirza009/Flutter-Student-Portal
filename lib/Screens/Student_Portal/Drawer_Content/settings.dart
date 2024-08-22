@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_test_application_1/Components/DrawerButton.dart';
 import 'package:flutter_test_application_1/Components/dialog_Box.dart';
-import 'package:flutter_test_application_1/Screens/Student_Portal/semesterPage.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/Drawer_Content/semesterPage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class SettingsPage extends StatelessWidget {

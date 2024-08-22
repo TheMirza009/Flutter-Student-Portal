@@ -4,10 +4,10 @@ import 'package:flutter_test_application_1/Components/dialog_Box.dart';
 import 'package:flutter_test_application_1/Components/dialoguebox.dart';
 import 'package:flutter_test_application_1/Components/titleAndText.dart';
 import 'package:flutter_test_application_1/Components/validButton.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/Drawer_Content/semesterPage.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/SignUp_Page/signup_email.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/homescreen.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/loginPage.dart';
-import 'package:flutter_test_application_1/Screens/Student_Portal/semesterPage.dart';
 import 'package:flutter_test_application_1/data/users_Database.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -132,6 +132,7 @@ class _SignUp_PasswordScreenState extends State<SignUp_PasswordScreen> {
                         children: [
                           titleAndText(
                             title: "Password",
+                            showTitle: false,
                             controller: passwordController_1,
                             borderUnderline: true,
                             obscureText: true,
@@ -166,6 +167,7 @@ class _SignUp_PasswordScreenState extends State<SignUp_PasswordScreen> {
                           ),
                           titleAndText(
                             title: "Confirm Password",
+                            showTitle: false,
                             controller: passwordController_2,
                             borderUnderline: true,
                             obscureText: true,

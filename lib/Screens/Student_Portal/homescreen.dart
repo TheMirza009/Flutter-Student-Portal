@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test_application_1/Components/DrawerButton.dart';
-import 'package:flutter_test_application_1/Screens/Student_Portal/drawerContent.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/Drawer_Content/drawerContent.dart';
 import 'package:flutter_test_application_1/Components/feed.dart';
 import 'package:flutter_test_application_1/Components/iconCard.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/Profile/profile.dart';
@@ -16,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late UserDatabase userbase;
+  final UserDatabase userbase = UserDatabase(); // Use Singleton instance
 
   @override
   void initState() {
@@ -24,12 +24,10 @@ class _HomeScreenState extends State<HomeScreen> {
     openHiveBox();
   }
 
-  void openHiveBox() async {
+  Future<void> openHiveBox() async {
     if (!Hive.isBoxOpen('mybox')) {
       await Hive.openBox('mybox');
-      print("Hive opened");
     }
-    userbase = UserDatabase();
     userbase.loadData();
     await userbase.getUserName();
   }

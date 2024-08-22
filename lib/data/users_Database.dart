@@ -2,6 +2,14 @@ import 'package:flutter_test_application_1/data/UserDetails.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class UserDatabase {
+  // Singleton instance
+  static final UserDatabase _instance = UserDatabase._internal();
+  
+  // Factory constructor
+  factory UserDatabase() => _instance;
+  
+  UserDatabase._internal(); // Private constructor
+
   final myBox = Hive.box("mybox");
   Map savedUsers = {};
 
@@ -22,8 +30,6 @@ class UserDatabase {
   // Create initial data for the database
   Future<void> createInitialData() async {
     savedUsers = {
-      // "user01": "1234",
-      // "user02": "5678",
       "mirzaabdulmoed@gmail.com": {
         "password": "1234",
         "details": UserDetails.dummyData
@@ -38,7 +44,8 @@ class UserDatabase {
     if (data != null && data is Map) {
       savedUsers = data;
       currentUser = await myBox.get("CURRENT_USER") ?? '';
-      print("Data loaded from Hive: \n -${savedUsers.keys.join('\n -')}, \nCurrent User: $currentUser");
+      print(
+          "Data loaded from Hive: \n -${savedUsers.keys.join('\n -')}, \nCurrent User: $currentUser");
     } else {
       await createInitialData();
     }
@@ -58,6 +65,35 @@ class UserDatabase {
   Future<void> updateData() async {
     await myBox.put("USERLIST", savedUsers);
     print("List updated: $savedUsers");
+  }
+
+  //Update User Details function for Profile page
+  Future<void> updateUserDetails({
+    String? name,
+    String? bloodGroup,
+    String? roll,
+    String? city,
+    String? batch,
+    String? phone,
+    String? program,
+    final photo,
+  }) async {
+    if (savedUsers.containsKey(currentUser)) {
+      var userDetails = savedUsers[currentUser]?["details"] ?? {};
+
+      if (name != null) userDetails["Name"] = name;
+      if (photo != null) userDetails["Photo"] = photo;
+      if (program != null) userDetails["Program"] = program;
+      if (bloodGroup != null) userDetails["Blood"] = bloodGroup;
+      if (roll != null) userDetails["Roll"] = roll;
+      if (city != null) userDetails["City"] = city;
+      if (batch != null) userDetails["Batch"] = batch;
+      if (phone != null) userDetails["Phone"] = phone;
+
+      savedUsers[currentUser]?["details"] = userDetails;
+
+      await updateData(); // Save the updated data to Hive
+    }
   }
 
   // Login the user
