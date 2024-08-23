@@ -493,8 +493,7 @@ class _ProfileEditState extends State<ProfileEdit> {
             child: DropdownButtonHideUnderline(
               child: DropdownButton<String>(
                 value: state.value, // Use FormField's value
-                items: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
-                    .map((String value) {
+                items: ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'].map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: montserratText(text: value, size: 13),

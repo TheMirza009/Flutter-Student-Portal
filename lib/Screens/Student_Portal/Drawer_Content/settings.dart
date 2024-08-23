@@ -33,6 +33,7 @@ class SettingsPage extends StatelessWidget {
                   context: context,
                   builder: (BuildContext context) {
                     return CustomDialogBox(
+                      singleButton: false,
                       message: "Are you sure you want to delete all Logins?",
                       onPressYes: () async {
                         var box = await Hive.openBox('yourBoxName');

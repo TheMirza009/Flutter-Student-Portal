@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/SignUp_Page/signup_Name.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/SignUp_Page/signup_password.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/homescreen.dart';
@@ -17,20 +18,21 @@ void main() async {
   UserDatabase().loadData();
   runApp(const MyCal());
 }
+
 class MyCal extends StatelessWidget {
   const MyCal({super.key});
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
+
     return MaterialApp(
-      // title: "ToDo List App",
-      // home: NameEditor(),
-      // home: ScrollTest(),
       title: "Student Portal",
       theme: ThemeData.light(),
-      home: RegisterPage(),
+      home: const RegisterPage(),
     );
   }
 }
-
-

@@ -182,8 +182,8 @@ class _SemesterPageState extends State<SemesterPage> {
   }
 }
 
-Widget montserratText({required String text, double size = 18, FontWeight weight = FontWeight.normal}) {
+Widget montserratText({required String text, double size = 18, FontWeight weight = FontWeight.normal, color = Colors.black}) {
   return Text(text,
       style:
-          GoogleFonts.montserrat().copyWith(fontSize: size, color: Colors.black, fontWeight: weight));
+          GoogleFonts.montserrat().copyWith(fontSize: size, color: color, fontWeight: weight));
 }

@@ -3,13 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test_application_1/Components/DrawerButton.dart';
 import 'package:flutter_test_application_1/Components/dialog_Box.dart';
 import 'package:flutter_test_application_1/Components/dialoguebox.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/Blazerplate/blazerLogin_tenet.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/Drawer_Content/grades.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/Drawer_Content/semesterPage.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/Drawer_Content/settings.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/Profile/profile.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/catFacts.dart';
+import 'package:flutter_test_application_1/Screens/Student_Portal/countryList.dart';
 import 'package:flutter_test_application_1/Screens/Student_Portal/registerPage.dart';
 import 'package:flutter_test_application_1/Utils/BarChart.dart';
 import 'package:flutter_test_application_1/data/users_Database.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class DrawerContent extends StatelessWidget {
   const DrawerContent({super.key});
@@ -58,7 +62,7 @@ class DrawerContent extends StatelessWidget {
                     Navigator.push(
                       context,
                       CupertinoPageRoute(
-                        builder: (_) => Profile(),
+                        builder: (_) => const Profile(),
                       ),
                     );
                     Scaffold.of(context).openEndDrawer();
@@ -143,6 +147,44 @@ class DrawerContent extends StatelessWidget {
                   onPressFunction: () {},
                 ),
 
+////////////////////////////  Countries
+                DrawerOption(
+                  buttonTitle: "Countries",
+                  icon: const Icon(
+                    Icons.flag_sharp,
+                    size: 19,
+                    color: Colors.blueGrey,
+                  ),
+                  onPressFunction: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (_) => Blazer_Login(),
+                      ),
+                    );
+                    Scaffold.of(context).openEndDrawer();
+                  },
+                ),
+
+////////////////////////////  Cat Facts
+                DrawerOption(
+                  buttonTitle: "Cat Facts",
+                  icon: const Icon(
+                    FontAwesomeIcons.cat,
+                    size: 19,
+                    color: Colors.blueGrey,
+                  ),
+                  onPressFunction: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (_) => CatFacts(),
+                      ),
+                    );
+                    Scaffold.of(context).openEndDrawer();
+                  },
+                ),
+
 ///////////////////////////// Settings
                 DrawerOption(
                   buttonTitle: "Settings",
@@ -179,6 +221,7 @@ class DrawerContent extends StatelessWidget {
                     context: context,
                     builder: (BuildContext context) {
                       return CustomDialogBox(
+                        singleButton: false,
                         message: "Are you sure you want to Log Out?",
                         onPressYes: () {
                           // Navigator.maybePop(context);

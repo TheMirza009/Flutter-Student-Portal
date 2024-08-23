@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 Widget validButton({ 
   required final onPressed, 
   String buttonTitle = "Validate",
-  final padding, 
+  final padding = const EdgeInsets.only(top: 25, bottom: 0), 
   final buttonColor = Colors.black,
   final textStyle,
   final buttonSize = const EdgeInsets.symmetric(vertical: 20.0, horizontal: 80.0),
